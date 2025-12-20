@@ -17,6 +17,6 @@ foreach ($Group in $ADGroup) {
 try {
   Add-ADGroupMember -identity $Group -Members $newcomputer
 } catch {
-  Write-Host "Computer failed to add the group $($Group.Name) $_"
+  Write-Host "Unable to add $newcomputer to the group $($Group.Name) $_"
 }
 }
