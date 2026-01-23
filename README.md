@@ -15,7 +15,7 @@ $ADGroup = Get-ADPrincipalGroupMembership -identity $oldcomputer
 
 foreach ($Group in $ADGroup) {
 try {
-  Add-ADGroupMember -identity $Group -Members $newcomputer
+  Add-ADGroupMember -identity $Group -Members $newcomputer -ErrorAction Stop 
 } catch {
   Write-Host "Unable to add $newcomputer to the group $Group. Error: $_"
 }
