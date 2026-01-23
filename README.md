@@ -11,12 +11,12 @@ $newcomputer = Read-Host -prompt "Please enter the new computer name"
 $oldcomputer = $oldcomputer + "$"
 $newcomputer = $oldcomputer + "$"
 
-$ADGroup = Get-ADPrincipalGroupMember -identity $oldcomputer
+$ADGroup = Get-ADPrincipalGroupMembership -identity $oldcomputer
 
 foreach ($Group in $ADGroup) {
 try {
   Add-ADGroupMember -identity $Group -Members $newcomputer
 } catch {
-  Write-Host "Unable to add $newcomputer to the group $($Group.Name) $_"
+  Write-Host "Unable to add $newcomputer to the group $Group. Error: $_"
 }
 }
